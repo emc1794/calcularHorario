@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel1.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\Administrador\DBSqlite\Prueba.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="paterno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="materno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="activo" Type="integer" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PruebaModel1StoreContainer">
+    <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\Administrador\DBSqlite\Prueba.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Area_Categoria">
+    <Key>
+      <PropertyRef Name="categoria_id" />
+      <PropertyRef Name="area_id" />
+    </Key>
+    <Property Name="mañana" Type="integer" Nullable="false" />
+    <Property Name="tarde" Type="integer" Nullable="false" />
+    <Property Name="noche" Type="integer" Nullable="false" />
+    <Property Name="categoria_id" Type="integer" Nullable="false" />
+    <Property Name="area_id" Type="integer" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asueto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaInicio" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="fechaFin" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="persona_id" Type="integer" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo" Type="integer" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="paterno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="materno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="activo" Type="integer" Nullable="false" />
+    <Property Name="categoria_id" Type="integer" />
+  </EntityType>
+  <Association Name="FK_Area_Categoria_0_0">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Area_Categoria" Type="Self.Area_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Categoria">
+        <PropertyRef Name="area_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Categoria_1_0">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Area_Categoria" Type="Self.Area_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Categoria">
+        <PropertyRef Name="categoria_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asueto_0_0">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Asueto" Type="Self.Asueto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Asueto">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persona_0_0">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="categoria_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PruebaModelStoreContainer">
+    <EntitySet Name="Area" EntityType="Self.Area" store:Type="Tables" />
+    <EntitySet Name="Area_Categoria" EntityType="Self.Area_Categoria" store:Type="Tables" />
+    <EntitySet Name="Asueto" EntityType="Self.Asueto" store:Type="Tables" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+    <AssociationSet Name="FK_Area_Categoria_0_0" Association="Self.FK_Area_Categoria_0_0">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Categoria_1_0" Association="Self.FK_Area_Categoria_1_0">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asueto_0_0" Association="Self.FK_Asueto_0_0">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Asueto" EntitySet="Asueto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persona_0_0" Association="Self.FK_Persona_0_0">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

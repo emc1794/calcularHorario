@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PruebaModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\Administrador\DBSqlite\Prueba.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Area_Categoria">
+          <Key>
+            <PropertyRef Name="categoria_id" />
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="mañana" Type="integer" Nullable="false" />
+          <Property Name="tarde" Type="integer" Nullable="false" />
+          <Property Name="noche" Type="integer" Nullable="false" />
+          <Property Name="categoria_id" Type="integer" Nullable="false" />
+          <Property Name="area_id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asueto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaInicio" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="fechaFin" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="persona_id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="integer" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="paterno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="materno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="activo" Type="integer" Nullable="false" />
+          <Property Name="categoria_id" Type="integer" />
+        </EntityType>
+        <Association Name="FK_Area_Categoria_0_0">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Area_Categoria" Type="Self.Area_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Categoria">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Categoria_1_0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Area_Categoria" Type="Self.Area_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Categoria">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asueto_0_0">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Asueto" Type="Self.Asueto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Asueto">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_0_0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PruebaModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" store:Type="Tables" />
+          <EntitySet Name="Area_Categoria" EntityType="Self.Area_Categoria" store:Type="Tables" />
+          <EntitySet Name="Asueto" EntityType="Self.Asueto" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+          <AssociationSet Name="FK_Area_Categoria_0_0" Association="Self.FK_Area_Categoria_0_0">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Categoria_1_0" Association="Self.FK_Area_Categoria_1_0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asueto_0_0" Association="Self.FK_Asueto_0_0">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Asueto" EntitySet="Asueto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_0_0" Association="Self.FK_Persona_0_0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PruebaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Persona" EntityType="PruebaModel.Persona" />
+          <EntitySet Name="Categoria" EntityType="PruebaModel.Categoria" />
+          <AssociationSet Name="FK_Persona_0_0" Association="PruebaModel.FK_Persona_0_0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <EntitySet Name="Area" EntityType="PruebaModel.Area" />
+          <EntitySet Name="Area_Categoria" EntityType="PruebaModel.Area_Categoria" />
+          <AssociationSet Name="FK_Area_Categoria_0_0" Association="PruebaModel.FK_Area_Categoria_0_0">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Categoria_1_0" Association="PruebaModel.FK_Area_Categoria_1_0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+          </AssociationSet>
+          <EntitySet Name="Asueto" EntityType="PruebaModel.Asueto" />
+          <AssociationSet Name="FK_Asueto_0_0" Association="PruebaModel.FK_Asueto_0_0">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Asueto" EntitySet="Asueto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Name="paterno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="materno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Int64" Nullable="false" />
+          <Property Name="codigo" Type="Int64" Nullable="false" />
+          <Property Name="categoria_id" Type="Int64" />
+          <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Persona" ToRole="Categoria" />
+          <NavigationProperty Name="Asueto" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Persona" ToRole="Asueto" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Categoria" ToRole="Persona" />
+          <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_1_0" FromRole="Categoria" ToRole="Area_Categoria" />
+        </EntityType>
+        <Association Name="FK_Persona_0_0">
+          <End Type="PruebaModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+          <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area" ToRole="Area_Categoria" />
+        </EntityType>
+        <EntityType Name="Area_Categoria">
+          <Key>
+            <PropertyRef Name="categoria_id" />
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="mañana" Type="Int64" Nullable="false" />
+          <Property Name="tarde" Type="Int64" Nullable="false" />
+          <Property Name="noche" Type="Int64" Nullable="false" />
+          <Property Name="categoria_id" Type="Int64" Nullable="false" />
+          <Property Name="area_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area_Categoria" ToRole="Area" />
+          <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Area_Categoria_1_0" FromRole="Area_Categoria" ToRole="Categoria" />
+        </EntityType>
+        <Association Name="FK_Area_Categoria_0_0">
+          <End Type="PruebaModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="PruebaModel.Area_Categoria" Role="Area_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Categoria">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Categoria_1_0">
+          <End Type="PruebaModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="PruebaModel.Area_Categoria" Role="Area_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Categoria">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Asueto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaInicio" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="fechaFin" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="persona_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Asueto" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_Asueto_0_0">
+          <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="PruebaModel.Asueto" Role="Asueto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Asueto">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PruebaModelStoreContainer" CdmEntityContainer="PruebaEntities">
+        <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="PruebaModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="PruebaModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="PruebaModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area_Categoria">
+            <EntityTypeMapping TypeName="PruebaModel.Area_Categoria">
+              <MappingFragment StoreEntitySet="Area_Categoria">
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="noche" ColumnName="noche" />
+                <ScalarProperty Name="tarde" ColumnName="tarde" />
+                <ScalarProperty Name="mañana" ColumnName="mañana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asueto">
+            <EntityTypeMapping TypeName="PruebaModel.Asueto">
+              <MappingFragment StoreEntitySet="Asueto">
+                <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

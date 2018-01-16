@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PruebaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Persona" EntityType="PruebaModel.Persona" />
+    <EntitySet Name="Categoria" EntityType="PruebaModel.Categoria" />
+    <AssociationSet Name="FK_Persona_0_0" Association="PruebaModel.FK_Persona_0_0">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <EntitySet Name="Area" EntityType="PruebaModel.Area" />
+    <EntitySet Name="Area_Categoria" EntityType="PruebaModel.Area_Categoria" />
+    <AssociationSet Name="FK_Area_Categoria_0_0" Association="PruebaModel.FK_Area_Categoria_0_0">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Categoria_1_0" Association="PruebaModel.FK_Area_Categoria_1_0">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+    </AssociationSet>
+    <EntitySet Name="Asueto" EntityType="PruebaModel.Asueto" />
+    <AssociationSet Name="FK_Asueto_0_0" Association="PruebaModel.FK_Asueto_0_0">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Asueto" EntitySet="Asueto" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+    <Property Name="paterno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="materno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="activo" Type="Int64" Nullable="false" />
+    <Property Name="codigo" Type="Int64" Nullable="false" />
+    <Property Name="categoria_id" Type="Int64" />
+    <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Persona" ToRole="Categoria" />
+    <NavigationProperty Name="Asueto" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Persona" ToRole="Asueto" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Categoria" ToRole="Persona" />
+    <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_1_0" FromRole="Categoria" ToRole="Area_Categoria" />
+  </EntityType>
+  <Association Name="FK_Persona_0_0">
+    <End Type="PruebaModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+    <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="categoria_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area" ToRole="Area_Categoria" />
+  </EntityType>
+  <EntityType Name="Area_Categoria">
+    <Key>
+      <PropertyRef Name="categoria_id" />
+      <PropertyRef Name="area_id" />
+    </Key>
+    <Property Name="mañana" Type="Int64" Nullable="false" />
+    <Property Name="tarde" Type="Int64" Nullable="false" />
+    <Property Name="noche" Type="Int64" Nullable="false" />
+    <Property Name="categoria_id" Type="Int64" Nullable="false" />
+    <Property Name="area_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area_Categoria" ToRole="Area" />
+    <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Area_Categoria_1_0" FromRole="Area_Categoria" ToRole="Categoria" />
+  </EntityType>
+  <Association Name="FK_Area_Categoria_0_0">
+    <End Type="PruebaModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="PruebaModel.Area_Categoria" Role="Area_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Categoria">
+        <PropertyRef Name="area_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Categoria_1_0">
+    <End Type="PruebaModel.Categoria" Role="Categoria" Multiplicity="1" />
+    <End Type="PruebaModel.Area_Categoria" Role="Area_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Categoria">
+        <PropertyRef Name="categoria_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Asueto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fechaInicio" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="fechaFin" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="persona_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Asueto" ToRole="Persona" />
+  </EntityType>
+  <Association Name="FK_Asueto_0_0">
+    <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="1" />
+    <End Type="PruebaModel.Asueto" Role="Asueto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Asueto">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

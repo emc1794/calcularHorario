@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d159c8c091342c7aecb30f2af4dbabb" Name="Diagram1">
+        <EntityTypeShape EntityType="PruebaModel.Persona" Width="1.5" PointX="0.875" PointY="2.875" />
+        <EntityTypeShape EntityType="PruebaModel.Categoria" Width="1.5" PointX="2.75" PointY="1.125" />
+        <AssociationConnector Association="PruebaModel.FK_Persona_0_0" />
+        <EntityTypeShape EntityType="PruebaModel.Area" Width="1.5" PointX="5.625" PointY="1.375" />
+        <EntityTypeShape EntityType="PruebaModel.Area_Categoria" Width="1.5" PointX="6.125" PointY="3.375" />
+        <AssociationConnector Association="PruebaModel.FK_Area_Categoria_0_0" />
+        <AssociationConnector Association="PruebaModel.FK_Area_Categoria_1_0" />
+        <EntityTypeShape EntityType="PruebaModel.Asueto" Width="1.5" PointX="3" PointY="3.625" />
+        <AssociationConnector Association="PruebaModel.FK_Asueto_0_0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
