@@ -40,6 +40,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -58,6 +60,7 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,6 +100,18 @@
     </Compile>
     <Compile Include="FrmArea.Designer.cs">
       <DependentUpon>FrmArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCalcular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCalcular.Designer.cs">
+      <DependentUpon>FrmCalcular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportePersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportePersona.Designer.cs">
+      <DependentUpon>FrmReportePersona.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -146,6 +161,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PruebaDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PruebaDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PruebaDataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sqlite.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +190,12 @@
     <EmbeddedResource Include="FrmArea.resx">
       <DependentUpon>FrmArea.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCalcular.resx">
+      <DependentUpon>FrmCalcular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportePersona.resx">
+      <DependentUpon>FrmReportePersona.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -179,6 +205,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="rpPersona.rdlc" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -264,6 +291,17 @@
     </None>
     <None Include="PruebaDataSet4.xss">
       <DependentUpon>PruebaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="PruebaDataSet5.xsc">
+      <DependentUpon>PruebaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="PruebaDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PruebaDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PruebaDataSet5.xss">
+      <DependentUpon>PruebaDataSet5.xsd</DependentUpon>
     </None>
     <None Include="Sqlite.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
