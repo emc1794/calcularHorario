@@ -21,3 +21,6 @@ C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\D
 C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\RdlCompile.cache
 C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\RdlCompile.compiled
 C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\Sqlite.FrmCalcular.resources
+C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\Sqlite.MDIPrimario.resources
+C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\Sqlite.FrmCategoria.resources
+C:\Users\Administrador\documents\visual studio 2013\Projects\sqlite\Sqlite\obj\Debug\Sqlite.FrmAcerca.resources

@@ -95,6 +95,12 @@
     <Compile Include="FormAsueto.Designer.cs">
       <DependentUpon>FormAsueto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAcerca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAcerca.Designer.cs">
+      <DependentUpon>FrmAcerca.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmArea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,11 +113,23 @@
     <Compile Include="FrmCalcular.Designer.cs">
       <DependentUpon>FrmCalcular.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoria.Designer.cs">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmReportePersona.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmReportePersona.Designer.cs">
       <DependentUpon>FrmReportePersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIPrimario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIPrimario.Designer.cs">
+      <DependentUpon>MDIPrimario.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -187,14 +205,23 @@
     <EmbeddedResource Include="FormAsueto.resx">
       <DependentUpon>FormAsueto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAcerca.resx">
+      <DependentUpon>FrmAcerca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmArea.resx">
       <DependentUpon>FrmArea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCalcular.resx">
       <DependentUpon>FrmCalcular.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategoria.resx">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmReportePersona.resx">
       <DependentUpon>FrmReportePersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIPrimario.resx">
+      <DependentUpon>MDIPrimario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
