@@ -22,6 +22,7 @@
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Asueto" EntitySet="Asueto" />
     </AssociationSet>
+    <EntitySet Name="personaNombreCompleto" EntityType="PruebaModel.personaNombreCompleto" />
   </EntityContainer>
   <EntityType Name="Persona">
     <Key>
@@ -126,4 +127,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="personaNombreCompleto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
 </Schema>

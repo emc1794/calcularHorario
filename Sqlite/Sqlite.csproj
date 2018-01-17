@@ -116,6 +116,9 @@
     <Compile Include="Persona.cs">
       <DependentUpon>Sqlite.tt</DependentUpon>
     </Compile>
+    <Compile Include="personaNombreCompleto.cs">
+      <DependentUpon>Sqlite.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebaDataSet.Designer.cs">
@@ -137,6 +140,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PruebaDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PruebaDataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="Sqlite.Context.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +253,17 @@
     </None>
     <None Include="PruebaDataSet3.xss">
       <DependentUpon>PruebaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="PruebaDataSet4.xsc">
+      <DependentUpon>PruebaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="PruebaDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PruebaDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PruebaDataSet4.xss">
+      <DependentUpon>PruebaDataSet4.xsd</DependentUpon>
     </None>
     <None Include="Sqlite.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

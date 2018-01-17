@@ -47,6 +47,15 @@
     <Property Name="activo" Type="integer" Nullable="false" />
     <Property Name="categoria_id" Type="integer" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6005: Actualmente, no se admite el tipo de datos '' para la versión de Entity Framework de destino; se excluyó la columna 'nombreCompleto' de la tabla 'main.personaNombreCompleto'.
+advertencia 6002: La tabla o vista 'main.personaNombreCompleto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="personaNombreCompleto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Area_Categoria_0_0">
     <End Role="Area" Type="Self.Area" Multiplicity="1" />
     <End Role="Area_Categoria" Type="Self.Area_Categoria" Multiplicity="*" />
@@ -101,6 +110,11 @@
     <EntitySet Name="Asueto" EntityType="Self.Asueto" store:Type="Tables" />
     <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
     <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+    <EntitySet Name="personaNombreCompleto" EntityType="Self.personaNombreCompleto" store:Type="Views">
+      <DefiningQuery>SELECT 
+[personaNombreCompleto].[id] AS [id]
+FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Area_Categoria_0_0" Association="Self.FK_Area_Categoria_0_0">
       <End Role="Area" EntitySet="Area" />
       <End Role="Area_Categoria" EntitySet="Area_Categoria" />

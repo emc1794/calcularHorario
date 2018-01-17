@@ -52,5 +52,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="personaNombreCompleto">
+      <EntityTypeMapping TypeName="PruebaModel.personaNombreCompleto">
+        <MappingFragment StoreEntitySet="personaNombreCompleto">
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

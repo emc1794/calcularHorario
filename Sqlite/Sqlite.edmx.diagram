@@ -14,6 +14,7 @@
         <AssociationConnector Association="PruebaModel.FK_Area_Categoria_1_0" />
         <EntityTypeShape EntityType="PruebaModel.Asueto" Width="1.5" PointX="3" PointY="3.625" />
         <AssociationConnector Association="PruebaModel.FK_Asueto_0_0" />
+        <EntityTypeShape EntityType="PruebaModel.personaNombreCompleto" Width="1.5" PointX="1.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
