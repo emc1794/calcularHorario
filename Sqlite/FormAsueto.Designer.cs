@@ -39,21 +39,21 @@
             this.dpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.pruebaDataSet3 = new Sqlite.PruebaDataSet3();
             this.personaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.personaTableAdapter = new Sqlite.PruebaDataSet3TableAdapters.PersonaTableAdapter();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.pruebaDataSet4 = new Sqlite.PruebaDataSet4();
+            this.cbPersona = new System.Windows.Forms.ComboBox();
             this.personaNombreCompletoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pruebaDataSet4 = new Sqlite.PruebaDataSet4();
             this.personaNombreCompletoTableAdapter = new Sqlite.PruebaDataSet4TableAdapters.personaNombreCompletoTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personaNombreCompletoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -145,36 +145,40 @@
             this.btnCargar.TabIndex = 9;
             this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
-            // button1
+            // btnGuardar
             // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(422, 95);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnGuardar.BackColor = System.Drawing.Color.Green;
+            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnGuardar.Location = new System.Drawing.Point(422, 95);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 10;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // button2
+            // btnEliminar
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(503, 95);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.Location = new System.Drawing.Point(503, 95);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 11;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // dataGridView1
+            // dgvDatos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 133);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(566, 171);
-            this.dataGridView1.TabIndex = 12;
+            this.dgvDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Location = new System.Drawing.Point(15, 133);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.Size = new System.Drawing.Size(566, 171);
+            this.dgvDatos.TabIndex = 12;
             // 
             // pruebaDataSet3
             // 
@@ -190,26 +194,26 @@
             // 
             this.personaTableAdapter.ClearBeforeFill = true;
             // 
-            // comboBox1
+            // cbPersona
             // 
-            this.comboBox1.DataSource = this.personaNombreCompletoBindingSource;
-            this.comboBox1.DisplayMember = "nombreCompleto";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 97);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(299, 21);
-            this.comboBox1.TabIndex = 13;
-            this.comboBox1.ValueMember = "id";
-            // 
-            // pruebaDataSet4
-            // 
-            this.pruebaDataSet4.DataSetName = "PruebaDataSet4";
-            this.pruebaDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.cbPersona.DataSource = this.personaNombreCompletoBindingSource;
+            this.cbPersona.DisplayMember = "nombreCompleto";
+            this.cbPersona.FormattingEnabled = true;
+            this.cbPersona.Location = new System.Drawing.Point(15, 97);
+            this.cbPersona.Name = "cbPersona";
+            this.cbPersona.Size = new System.Drawing.Size(299, 21);
+            this.cbPersona.TabIndex = 13;
+            this.cbPersona.ValueMember = "id";
             // 
             // personaNombreCompletoBindingSource
             // 
             this.personaNombreCompletoBindingSource.DataMember = "personaNombreCompleto";
             this.personaNombreCompletoBindingSource.DataSource = this.pruebaDataSet4;
+            // 
+            // pruebaDataSet4
+            // 
+            this.pruebaDataSet4.DataSetName = "PruebaDataSet4";
+            this.pruebaDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // personaNombreCompletoTableAdapter
             // 
@@ -220,10 +224,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 321);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cbPersona);
+            this.Controls.Add(this.dgvDatos);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.dpFechaInicio);
@@ -237,11 +241,11 @@
             this.Name = "FormAsueto";
             this.Text = "FormAsueto";
             this.Load += new System.EventHandler(this.FormAsueto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personaNombreCompletoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,13 +263,13 @@
         private System.Windows.Forms.DateTimePicker dpFechaInicio;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnCargar;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgvDatos;
         private PruebaDataSet3 pruebaDataSet3;
         private System.Windows.Forms.BindingSource personaBindingSource;
         private PruebaDataSet3TableAdapters.PersonaTableAdapter personaTableAdapter;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbPersona;
         private PruebaDataSet4 pruebaDataSet4;
         private System.Windows.Forms.BindingSource personaNombreCompletoBindingSource;
         private PruebaDataSet4TableAdapters.personaNombreCompletoTableAdapter personaNombreCompletoTableAdapter;

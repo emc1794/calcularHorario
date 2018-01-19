@@ -5,16 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7d159c8c091342c7aecb30f2af4dbabb" Name="Diagram1">
-        <EntityTypeShape EntityType="PruebaModel.Persona" Width="1.5" PointX="0.875" PointY="2.875" />
+        <EntityTypeShape EntityType="PruebaModel.Persona" Width="1.5" PointX="3.125" PointY="4" />
         <EntityTypeShape EntityType="PruebaModel.Categoria" Width="1.5" PointX="2.75" PointY="1.125" />
         <AssociationConnector Association="PruebaModel.FK_Persona_0_0" />
-        <EntityTypeShape EntityType="PruebaModel.Area" Width="1.5" PointX="5.625" PointY="1.375" />
-        <EntityTypeShape EntityType="PruebaModel.Area_Categoria" Width="1.5" PointX="6.125" PointY="3.375" />
+        <EntityTypeShape EntityType="PruebaModel.Area" Width="1.5" PointX="9.125" PointY="5" />
+        <EntityTypeShape EntityType="PruebaModel.Area_Categoria" Width="1.5" PointX="8.75" PointY="0.875" />
         <AssociationConnector Association="PruebaModel.FK_Area_Categoria_0_0" />
         <AssociationConnector Association="PruebaModel.FK_Area_Categoria_1_0" />
-        <EntityTypeShape EntityType="PruebaModel.Asueto" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="PruebaModel.Asueto" Width="1.5" PointX="0.5" PointY="3.875" />
         <AssociationConnector Association="PruebaModel.FK_Asueto_0_0" />
-        <EntityTypeShape EntityType="PruebaModel.personaNombreCompleto" Width="1.5" PointX="1.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PruebaModel.personaNombreCompleto" Width="1.5" PointX="1.375" PointY="8.5" />
+        <EntityTypeShape EntityType="PruebaModel.Fecha" Width="1.5" PointX="6.875" PointY="8.125" />
+        <EntityTypeShape EntityType="PruebaModel.Area_Persona" Width="1.5" PointX="6.5" PointY="4.75" />
+        <AssociationConnector Association="PruebaModel.FK_Area_Persona_1_0" />
+        <AssociationConnector Association="PruebaModel.FK_Area_Persona_0_0" />
+        <AssociationConnector Association="PruebaModel.FK_Area_Persona_1_01" />
+        <EntityTypeShape EntityType="PruebaModel.calculo" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -213,6 +213,7 @@
             // dgvCategoria
             // 
             this.dgvCategoria.AllowUserToOrderColumns = true;
+            this.dgvCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategoria.Location = new System.Drawing.Point(22, 263);
             this.dgvCategoria.Name = "dgvCategoria";
