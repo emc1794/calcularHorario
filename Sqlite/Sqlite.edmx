@@ -23,6 +23,16 @@
           <Property Name="categoria_id" Type="integer" Nullable="false" />
           <Property Name="area_id" Type="integer" Nullable="false" />
         </EntityType>
+        <EntityType Name="Area_Persona">
+          <Key>
+            <PropertyRef Name="persona_id" />
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="turno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="persona_id" Type="integer" Nullable="false" />
+          <Property Name="area_id" Type="integer" Nullable="false" />
+          <Property Name="fecha_id" Type="integer" Nullable="false" />
+        </EntityType>
         <EntityType Name="Asueto">
           <Key>
             <PropertyRef Name="id" />
@@ -40,6 +50,14 @@
           <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
+        <EntityType Name="Fecha">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="id" />
@@ -51,6 +69,20 @@
           <Property Name="materno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="activo" Type="integer" Nullable="false" />
           <Property Name="categoria_id" Type="integer" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'main.calculo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="calculo">
+          <Key>
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="turno" />
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="fecha" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="turno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="codigo" Type="integer" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6005: Actualmente, no se admite el tipo de datos '' para la versión de Entity Framework de destino; se excluyó la columna 'nombreCompleto' de la tabla 'main.personaNombreCompleto'.
@@ -85,6 +117,42 @@ advertencia 6002: La tabla o vista 'main.personaNombreCompleto' no tiene definid
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Area_Persona_0_0">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Persona_1_0">
+          <End Role="Fecha" Type="Self.Fecha" Multiplicity="1" />
+          <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fecha">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="fecha_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Persona_2_0">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Asueto_0_0">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
           <End Role="Asueto" Type="Self.Asueto" Multiplicity="*" />
@@ -112,9 +180,19 @@ advertencia 6002: La tabla o vista 'main.personaNombreCompleto' no tiene definid
         <EntityContainer Name="PruebaModelStoreContainer">
           <EntitySet Name="Area" EntityType="Self.Area" store:Type="Tables" />
           <EntitySet Name="Area_Categoria" EntityType="Self.Area_Categoria" store:Type="Tables" />
+          <EntitySet Name="Area_Persona" EntityType="Self.Area_Persona" store:Type="Tables" />
           <EntitySet Name="Asueto" EntityType="Self.Asueto" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
+          <EntitySet Name="Fecha" EntityType="Self.Fecha" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+          <EntitySet Name="calculo" EntityType="Self.calculo" store:Type="Views">
+            <DefiningQuery>SELECT 
+[calculo].[fecha] AS [fecha], 
+[calculo].[nombre] AS [nombre], 
+[calculo].[turno] AS [turno], 
+[calculo].[codigo] AS [codigo]
+FROM [calculo] AS [calculo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="personaNombreCompleto" EntityType="Self.personaNombreCompleto" store:Type="Views">
             <DefiningQuery>SELECT 
 [personaNombreCompleto].[id] AS [id]
@@ -127,6 +205,18 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
           <AssociationSet Name="FK_Area_Categoria_1_0" Association="Self.FK_Area_Categoria_1_0">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Persona_0_0" Association="Self.FK_Area_Persona_0_0">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Persona_1_0" Association="Self.FK_Area_Persona_1_0">
+            <End Role="Fecha" EntitySet="Fecha" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Persona_2_0" Association="Self.FK_Area_Persona_2_0">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
           </AssociationSet>
           <AssociationSet Name="FK_Asueto_0_0" Association="Self.FK_Asueto_0_0">
             <End Role="Persona" EntitySet="Persona" />
@@ -164,6 +254,21 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
             <End Role="Asueto" EntitySet="Asueto" />
           </AssociationSet>
           <EntitySet Name="personaNombreCompleto" EntityType="PruebaModel.personaNombreCompleto" />
+          <EntitySet Name="Fecha" EntityType="PruebaModel.Fecha" />
+          <EntitySet Name="Area_Persona" EntityType="PruebaModel.Area_Persona" />
+          <AssociationSet Name="FK_Area_Persona_1_0" Association="PruebaModel.FK_Area_Persona_1_0">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Persona_0_0" Association="PruebaModel.FK_Area_Persona_0_0">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Area_Persona_1_01" Association="PruebaModel.FK_Area_Persona_1_01">
+            <End Role="Fecha" EntitySet="Fecha" />
+            <End Role="Area_Persona" EntitySet="Area_Persona" />
+          </AssociationSet>
+          <EntitySet Name="calculo" EntityType="PruebaModel.calculo" />
         </EntityContainer>
         <EntityType Name="Persona">
           <Key>
@@ -178,6 +283,7 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
           <Property Name="categoria_id" Type="Int64" />
           <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Persona" ToRole="Categoria" />
           <NavigationProperty Name="Asueto" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Persona" ToRole="Asueto" />
+          <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_0_0" FromRole="Persona" ToRole="Area_Persona" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -207,6 +313,7 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area" ToRole="Area_Categoria" />
+          <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_1_0" FromRole="Area" ToRole="Area_Persona" />
         </EntityType>
         <EntityType Name="Area_Categoria">
           <Key>
@@ -274,6 +381,76 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="Fecha">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_1_01" FromRole="Fecha" ToRole="Area_Persona" />
+        </EntityType>
+        <EntityType Name="Area_Persona">
+          <Key>
+            <PropertyRef Name="persona_id" />
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="turno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="persona_id" Type="Int64" Nullable="false" />
+          <Property Name="area_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="PruebaModel.FK_Area_Persona_1_0" FromRole="Area_Persona" ToRole="Area" />
+          <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Area_Persona_0_0" FromRole="Area_Persona" ToRole="Persona" />
+          <Property Name="fecha_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Fecha" Relationship="PruebaModel.FK_Area_Persona_1_01" FromRole="Area_Persona" ToRole="Fecha" />
+        </EntityType>
+        <Association Name="FK_Area_Persona_1_0">
+          <End Type="PruebaModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Persona_0_0">
+          <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Area_Persona_1_01">
+          <End Type="PruebaModel.Fecha" Role="Fecha" Multiplicity="1" />
+          <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fecha">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Area_Persona">
+              <PropertyRef Name="fecha_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="calculo">
+          <Key>
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="turno" />
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="fecha" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="turno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="codigo" Type="Int64" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -335,6 +512,35 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
             <EntityTypeMapping TypeName="PruebaModel.personaNombreCompleto">
               <MappingFragment StoreEntitySet="personaNombreCompleto">
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fecha">
+            <EntityTypeMapping TypeName="PruebaModel.Fecha">
+              <MappingFragment StoreEntitySet="Fecha">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area_Persona">
+            <EntityTypeMapping TypeName="PruebaModel.Area_Persona">
+              <MappingFragment StoreEntitySet="Area_Persona">
+                <ScalarProperty Name="fecha_id" ColumnName="fecha_id" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="calculo">
+            <EntityTypeMapping TypeName="PruebaModel.calculo">
+              <MappingFragment StoreEntitySet="calculo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -148,9 +148,26 @@ namespace Sqlite
             childForm.Show();
         }
 
-        private void calcularToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void fechasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmFechas childForm = new FrmFechas();
+            childForm.MdiParent = this;
+            childForm.Text = "Ventana " + childFormNumber++;
+            childForm.Show();
+        }
+
+        private void totalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCalcular childForm = new FrmCalcular();
+            childForm.MdiParent = this;
+            childForm.Text = "Ventana " + childFormNumber++;
+            childForm.Show();
+        }
+
+        private void reporteCalculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReporteCalculo childForm = new FrmReporteCalculo();
             childForm.MdiParent = this;
             childForm.Text = "Ventana " + childFormNumber++;
             childForm.Show();

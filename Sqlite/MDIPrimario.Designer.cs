@@ -49,12 +49,15 @@
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asuetoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calcularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fechasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDePersonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.reporteCalculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -214,15 +217,32 @@
             // 
             // calcularToolStripMenuItem
             // 
+            this.calcularToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fechasToolStripMenuItem,
+            this.totalToolStripMenuItem});
             this.calcularToolStripMenuItem.Name = "calcularToolStripMenuItem";
             this.calcularToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.calcularToolStripMenuItem.Text = "Calcular";
-            this.calcularToolStripMenuItem.Click += new System.EventHandler(this.calcularToolStripMenuItem_Click);
+            // 
+            // fechasToolStripMenuItem
+            // 
+            this.fechasToolStripMenuItem.Name = "fechasToolStripMenuItem";
+            this.fechasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fechasToolStripMenuItem.Text = "Fechas";
+            this.fechasToolStripMenuItem.Click += new System.EventHandler(this.fechasToolStripMenuItem_Click);
+            // 
+            // totalToolStripMenuItem
+            // 
+            this.totalToolStripMenuItem.Name = "totalToolStripMenuItem";
+            this.totalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.totalToolStripMenuItem.Text = "Horas";
+            this.totalToolStripMenuItem.Click += new System.EventHandler(this.totalToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reporteDePersonasToolStripMenuItem});
+            this.reporteDePersonasToolStripMenuItem,
+            this.reporteCalculoToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -256,6 +276,13 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
+            // 
+            // reporteCalculoToolStripMenuItem
+            // 
+            this.reporteCalculoToolStripMenuItem.Name = "reporteCalculoToolStripMenuItem";
+            this.reporteCalculoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.reporteCalculoToolStripMenuItem.Text = "Reporte Calculo";
+            this.reporteCalculoToolStripMenuItem.Click += new System.EventHandler(this.reporteCalculoToolStripMenuItem_Click);
             // 
             // MDIPrimario
             // 
@@ -304,6 +331,9 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDePersonasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fechasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem totalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteCalculoToolStripMenuItem;
     }
 }
 

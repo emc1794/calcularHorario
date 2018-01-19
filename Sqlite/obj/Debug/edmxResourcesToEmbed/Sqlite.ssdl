@@ -18,6 +18,16 @@
     <Property Name="categoria_id" Type="integer" Nullable="false" />
     <Property Name="area_id" Type="integer" Nullable="false" />
   </EntityType>
+  <EntityType Name="Area_Persona">
+    <Key>
+      <PropertyRef Name="persona_id" />
+      <PropertyRef Name="area_id" />
+    </Key>
+    <Property Name="turno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="persona_id" Type="integer" Nullable="false" />
+    <Property Name="area_id" Type="integer" Nullable="false" />
+    <Property Name="fecha_id" Type="integer" Nullable="false" />
+  </EntityType>
   <EntityType Name="Asueto">
     <Key>
       <PropertyRef Name="id" />
@@ -35,6 +45,14 @@
     <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
   </EntityType>
+  <EntityType Name="Fecha">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
   <EntityType Name="Persona">
     <Key>
       <PropertyRef Name="id" />
@@ -46,6 +64,20 @@
     <Property Name="materno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
     <Property Name="activo" Type="integer" Nullable="false" />
     <Property Name="categoria_id" Type="integer" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'main.calculo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="calculo">
+    <Key>
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="turno" />
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="fecha" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="turno" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="codigo" Type="integer" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6005: Actualmente, no se admite el tipo de datos '' para la versión de Entity Framework de destino; se excluyó la columna 'nombreCompleto' de la tabla 'main.personaNombreCompleto'.
@@ -80,6 +112,42 @@ advertencia 6002: La tabla o vista 'main.personaNombreCompleto' no tiene definid
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Area_Persona_0_0">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Persona_1_0">
+    <End Role="Fecha" Type="Self.Fecha" Multiplicity="1" />
+    <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fecha">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="fecha_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Persona_2_0">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Area_Persona" Type="Self.Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="area_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Asueto_0_0">
     <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
     <End Role="Asueto" Type="Self.Asueto" Multiplicity="*" />
@@ -107,9 +175,19 @@ advertencia 6002: La tabla o vista 'main.personaNombreCompleto' no tiene definid
   <EntityContainer Name="PruebaModelStoreContainer">
     <EntitySet Name="Area" EntityType="Self.Area" store:Type="Tables" />
     <EntitySet Name="Area_Categoria" EntityType="Self.Area_Categoria" store:Type="Tables" />
+    <EntitySet Name="Area_Persona" EntityType="Self.Area_Persona" store:Type="Tables" />
     <EntitySet Name="Asueto" EntityType="Self.Asueto" store:Type="Tables" />
     <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
+    <EntitySet Name="Fecha" EntityType="Self.Fecha" store:Type="Tables" />
     <EntitySet Name="Persona" EntityType="Self.Persona" store:Type="Tables" />
+    <EntitySet Name="calculo" EntityType="Self.calculo" store:Type="Views">
+      <DefiningQuery>SELECT 
+[calculo].[fecha] AS [fecha], 
+[calculo].[nombre] AS [nombre], 
+[calculo].[turno] AS [turno], 
+[calculo].[codigo] AS [codigo]
+FROM [calculo] AS [calculo]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="personaNombreCompleto" EntityType="Self.personaNombreCompleto" store:Type="Views">
       <DefiningQuery>SELECT 
 [personaNombreCompleto].[id] AS [id]
@@ -122,6 +200,18 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
     <AssociationSet Name="FK_Area_Categoria_1_0" Association="Self.FK_Area_Categoria_1_0">
       <End Role="Categoria" EntitySet="Categoria" />
       <End Role="Area_Categoria" EntitySet="Area_Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Persona_0_0" Association="Self.FK_Area_Persona_0_0">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Persona_1_0" Association="Self.FK_Area_Persona_1_0">
+      <End Role="Fecha" EntitySet="Fecha" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Persona_2_0" Association="Self.FK_Area_Persona_2_0">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
     </AssociationSet>
     <AssociationSet Name="FK_Asueto_0_0" Association="Self.FK_Asueto_0_0">
       <End Role="Persona" EntitySet="Persona" />

@@ -23,6 +23,21 @@
       <End Role="Asueto" EntitySet="Asueto" />
     </AssociationSet>
     <EntitySet Name="personaNombreCompleto" EntityType="PruebaModel.personaNombreCompleto" />
+    <EntitySet Name="Fecha" EntityType="PruebaModel.Fecha" />
+    <EntitySet Name="Area_Persona" EntityType="PruebaModel.Area_Persona" />
+    <AssociationSet Name="FK_Area_Persona_1_0" Association="PruebaModel.FK_Area_Persona_1_0">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Persona_0_0" Association="PruebaModel.FK_Area_Persona_0_0">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Area_Persona_1_01" Association="PruebaModel.FK_Area_Persona_1_01">
+      <End Role="Fecha" EntitySet="Fecha" />
+      <End Role="Area_Persona" EntitySet="Area_Persona" />
+    </AssociationSet>
+    <EntitySet Name="calculo" EntityType="PruebaModel.calculo" />
   </EntityContainer>
   <EntityType Name="Persona">
     <Key>
@@ -37,6 +52,7 @@
     <Property Name="categoria_id" Type="Int64" />
     <NavigationProperty Name="Categoria" Relationship="PruebaModel.FK_Persona_0_0" FromRole="Persona" ToRole="Categoria" />
     <NavigationProperty Name="Asueto" Relationship="PruebaModel.FK_Asueto_0_0" FromRole="Persona" ToRole="Asueto" />
+    <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_0_0" FromRole="Persona" ToRole="Area_Persona" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
@@ -66,6 +82,7 @@
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Area_Categoria" Relationship="PruebaModel.FK_Area_Categoria_0_0" FromRole="Area" ToRole="Area_Categoria" />
+    <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_1_0" FromRole="Area" ToRole="Area_Persona" />
   </EntityType>
   <EntityType Name="Area_Categoria">
     <Key>
@@ -132,5 +149,75 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Fecha">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Area_Persona" Relationship="PruebaModel.FK_Area_Persona_1_01" FromRole="Fecha" ToRole="Area_Persona" />
+  </EntityType>
+  <EntityType Name="Area_Persona">
+    <Key>
+      <PropertyRef Name="persona_id" />
+      <PropertyRef Name="area_id" />
+    </Key>
+    <Property Name="turno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="persona_id" Type="Int64" Nullable="false" />
+    <Property Name="area_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="PruebaModel.FK_Area_Persona_1_0" FromRole="Area_Persona" ToRole="Area" />
+    <NavigationProperty Name="Persona" Relationship="PruebaModel.FK_Area_Persona_0_0" FromRole="Area_Persona" ToRole="Persona" />
+    <Property Name="fecha_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Fecha" Relationship="PruebaModel.FK_Area_Persona_1_01" FromRole="Area_Persona" ToRole="Fecha" />
+  </EntityType>
+  <Association Name="FK_Area_Persona_1_0">
+    <End Type="PruebaModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="area_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Persona_0_0">
+    <End Type="PruebaModel.Persona" Role="Persona" Multiplicity="1" />
+    <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Area_Persona_1_01">
+    <End Type="PruebaModel.Fecha" Role="Fecha" Multiplicity="1" />
+    <End Type="PruebaModel.Area_Persona" Role="Area_Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fecha">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Area_Persona">
+        <PropertyRef Name="fecha_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="calculo">
+    <Key>
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="turno" />
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="fecha" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="turno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="codigo" Type="Int64" Nullable="false" />
   </EntityType>
 </Schema>

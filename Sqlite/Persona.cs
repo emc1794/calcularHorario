@@ -18,6 +18,7 @@ namespace Sqlite
         public Persona()
         {
             this.Asueto = new HashSet<Asueto>();
+            this.Area_Persona = new HashSet<Area_Persona>();
         }
     
         public long id { get; set; }
@@ -31,5 +32,7 @@ namespace Sqlite
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asueto> Asueto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Area_Persona> Area_Persona { get; set; }
     }
 }

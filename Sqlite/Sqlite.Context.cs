@@ -31,5 +31,8 @@ namespace Sqlite
         public virtual DbSet<Area_Categoria> Area_Categoria { get; set; }
         public virtual DbSet<Asueto> Asueto { get; set; }
         public virtual DbSet<personaNombreCompleto> personaNombreCompleto { get; set; }
+        public virtual DbSet<Fecha> Fecha { get; set; }
+        public virtual DbSet<Area_Persona> Area_Persona { get; set; }
+        public virtual DbSet<calculo> calculo { get; set; }
     }
 }

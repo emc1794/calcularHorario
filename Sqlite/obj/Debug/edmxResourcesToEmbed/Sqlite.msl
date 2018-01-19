@@ -59,5 +59,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Fecha">
+      <EntityTypeMapping TypeName="PruebaModel.Fecha">
+        <MappingFragment StoreEntitySet="Fecha">
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Area_Persona">
+      <EntityTypeMapping TypeName="PruebaModel.Area_Persona">
+        <MappingFragment StoreEntitySet="Area_Persona">
+          <ScalarProperty Name="fecha_id" ColumnName="fecha_id" />
+          <ScalarProperty Name="area_id" ColumnName="area_id" />
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+          <ScalarProperty Name="turno" ColumnName="turno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calculo">
+      <EntityTypeMapping TypeName="PruebaModel.calculo">
+        <MappingFragment StoreEntitySet="calculo">
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="turno" ColumnName="turno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
