@@ -296,6 +296,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="rpCalculado.rdlc" />
     <EmbeddedResource Include="rpPersona.rdlc" />
     <None Include="packages.config" />

@@ -16,5 +16,12 @@ namespace Sqlite
         {
             InitializeComponent();
         }
+
+        private void FrmCalcular_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'pruebaDataSet8.calculo' Puede moverla o quitarla según sea necesario.
+            this.calculoTableAdapter.Fill(this.pruebaDataSet8.calculo);
+
+        }
     }
 }

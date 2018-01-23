@@ -449,7 +449,7 @@ FROM [personaNombreCompleto] AS [personaNombreCompleto]</DefiningQuery>
           <Property Name="fecha" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="turno" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="codigo" Type="Int64" Nullable="false" />
+          <Property Name="codigo" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

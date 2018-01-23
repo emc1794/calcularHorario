@@ -28,12 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pruebaDataSet8 = new Sqlite.PruebaDataSet8();
+            this.pruebaDataSet8BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.calculoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.calculoTableAdapter = new Sqlite.PruebaDataSet8TableAdapters.calculoTableAdapter();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.turnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet8BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calculoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +83,61 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fechaDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.turnoDataGridViewTextBoxColumn,
+            this.codigoDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.calculoBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(14, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(831, 265);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // pruebaDataSet8
+            // 
+            this.pruebaDataSet8.DataSetName = "PruebaDataSet8";
+            this.pruebaDataSet8.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // pruebaDataSet8BindingSource
+            // 
+            this.pruebaDataSet8BindingSource.DataSource = this.pruebaDataSet8;
+            this.pruebaDataSet8BindingSource.Position = 0;
+            // 
+            // calculoBindingSource
+            // 
+            this.calculoBindingSource.DataMember = "calculo";
+            this.calculoBindingSource.DataSource = this.pruebaDataSet8BindingSource;
+            // 
+            // calculoTableAdapter
+            // 
+            this.calculoTableAdapter.ClearBeforeFill = true;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // turnoDataGridViewTextBoxColumn
+            // 
+            this.turnoDataGridViewTextBoxColumn.DataPropertyName = "turno";
+            this.turnoDataGridViewTextBoxColumn.HeaderText = "turno";
+            this.turnoDataGridViewTextBoxColumn.Name = "turnoDataGridViewTextBoxColumn";
+            // 
+            // codigoDataGridViewTextBoxColumn
+            // 
+            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
+            this.codigoDataGridViewTextBoxColumn.HeaderText = "codigo";
+            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
             // 
             // FrmCalcular
             // 
@@ -89,7 +151,11 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmCalcular";
             this.Text = "FrmCalcular";
+            this.Load += new System.EventHandler(this.FrmCalcular_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pruebaDataSet8BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calculoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,5 +168,13 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource pruebaDataSet8BindingSource;
+        private PruebaDataSet8 pruebaDataSet8;
+        private System.Windows.Forms.BindingSource calculoBindingSource;
+        private PruebaDataSet8TableAdapters.calculoTableAdapter calculoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn turnoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
     }
 }

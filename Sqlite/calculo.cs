@@ -17,6 +17,6 @@ namespace Sqlite
         public string fecha { get; set; }
         public string nombre { get; set; }
         public string turno { get; set; }
-        public long codigo { get; set; }
+        public int codigo { get; set; }
     }
 }

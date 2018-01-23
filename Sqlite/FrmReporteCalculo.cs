@@ -20,8 +20,9 @@ namespace Sqlite
         private void FrmReporteCalculo_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'PruebaDataSet6.calculo' Puede moverla o quitarla según sea necesario.
-            this.calculoTableAdapter.Fill(this.PruebaDataSet6.calculo);
+            this.calculoTableAdapter.Fill(this.PruebaDataSet8.calculo);
 
+            this.reportViewer1.RefreshReport();
             this.reportViewer1.RefreshReport();
             this.reportViewer1.RefreshReport();
         }
